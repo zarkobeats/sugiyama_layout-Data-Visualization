@@ -15,7 +15,7 @@ The width of a single row can be modified and can be given a certain maximum, so
 
 Step 3:
 Crossing Minimization. Calculating the relative positions of every node, so the number of crossings, that form from the edges is maximally lowered. There are more than one way to calculate this.
-In this repository, I'm using barycenter of the parents in the main file.
+In this repository, I'm using barycenter of the parents in the main 'sugiyama_layout' file.
 In 'sugiyama with 2 layers.py' I'm using interconnection matrix of G(graph), calculating the number of crossings in every iteration, while rotating the positions of the nodes in the list for the current level.
 (the matrix does not include dummies)
 
@@ -24,3 +24,6 @@ Vertex Positioning. Positions are assigned based on the nodes' ordering in the l
 
 Step 5:
 Drawing Edges. Using the positions of every node from the previous step and matplotlib.pyplot the graph is visualized. 
+
+
+'barycenter with 2 layers' may be remade to be used for more than 2 layers, therefore could be installed in the main 'sugiyama_layout' file.

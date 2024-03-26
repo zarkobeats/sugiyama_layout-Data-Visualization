@@ -34,7 +34,7 @@ def sugiyama_layout(graph):
     return positions
 
 
-# step 1
+# step 1: cycle breaking
 def cycle_breaking(graph):
     cycle_edges = list(nx.simple_cycles(graph))  # Find cycles in the graph
 
@@ -50,10 +50,10 @@ def cycle_breaking(graph):
     return graph
 
 
-# step 2
+# step 2: leveling
 def assign_levels_and_positions(graph):
     levels = {}  # {2: 1, 3: 1, 1: 1, 5: 2, 4: 2, 6: 3, 8: 4, 7: 4}
-    nodes_for_every_level = []  # [[2, 1, 3], [5, 4], [6], [8, 7]]
+    nodes_for_every_level = []  # [[2, 3, 1], [5, 4], [6], [8, 7]]
     dummy_nodes = []
     edges_copy = []  # [(3, 5), (2, 5), (3, 4), (1, 4), (2, 4), (4, 6), (5, 6), (1, 'd610'), ('d610', 6), (6, 8), (1, 'd810'),
     # ('d810', 'd811'), ('d811', 8), (5, 'd750'), ('d750', 7), (6, 7), (1, 'd710'), ('d710', 'd711'), ('d711', 7)]
@@ -97,7 +97,7 @@ def assign_levels_and_positions(graph):
     return graph, positions, nodes_for_every_level, edges_copy
 
 
-# step 3
+# step 3: Crossings minimization
 def count_crossings(nodes_for_every_level, edges_copy):
     crossings = 0
     for i, item in enumerate(nodes_for_every_level):
@@ -135,7 +135,7 @@ def crossing_reduction(graph, positions, nodes_for_every_level):
     return positions
 
 
-# barycenter, ama ako nqmash roditeli, vinagi e 0
+# calculating the barycenter based on the positions of the predecessors
 def calculate_barycenter(graph, level_nodes, positions):
     barycenter = {}
     for i, node in enumerate(level_nodes):
@@ -151,10 +151,10 @@ def calculate_barycenter(graph, level_nodes, positions):
     return barycenter
 
 
-# final positions
+# step 4: final positions
 positions = sugiyama_layout(graph)
 
-# zahari zograf
+# step 5: Visualization
 plt.figure(figsize=(10, 8))
 nx.draw(graph, pos=positions, with_labels=True, node_size=1000, node_color="lightblue", font_size=12)
 plt.suptitle("Sugiyama layout")

@@ -1,7 +1,7 @@
 # sugiyama_layout
 Sugiyama layout is used for better hierarchical Graph Visualization.
 A graph(V,E) has V = vertices and E(n,m) = Edges
-Edges have 2 vertices.
+Edges consist of 2 vertices.
 n - parent node, m - child node.
 
 The Visualization consists of 5 steps:
